@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  body {
+    @apply m-0 p-0 font-sans transition-colors duration-200;
+    @apply bg-white text-gray-900;
+    @apply dark:bg-gray-900 dark:text-gray-50;
+  }
+
+  [data-theme="dark"] {
+    @apply dark;
+  }
+
+  h3 {
+    @apply m-0;
+  }
+
+  p {
+    @apply m-0;
+  }
+
+  button {
+    @apply font-sans;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply w-full mx-auto px-4;
+  }
+
+  .btn-base {
+    @apply border-none rounded-lg px-6 py-2 text-sm font-semibold cursor-pointer;
+    @apply transition-all duration-150 ease-in-out;
+    @apply inline-flex items-center justify-center min-h-[2.5rem] w-full;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+
+  .btn-solid {
+    @apply btn-base bg-blue-600 text-white;
+    @apply hover:bg-blue-700 hover:-translate-y-0.5;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+    @apply dark:bg-blue-500 dark:hover:bg-purple-700;
+  }
+
+  .btn-outline {
+    @apply btn-base bg-transparent text-blue-600 border border-blue-600;
+    @apply hover:bg-blue-600 hover:text-white hover:-translate-y-0.5;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+    @apply dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-500;
+  }
+
+  .btn-ghost {
+    @apply btn-base bg-transparent text-blue-600 border border-transparent;
+    @apply hover:bg-gray-200 hover:-translate-y-0.5;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+    @apply dark:text-blue-400 dark:hover:bg-gray-700;
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, theme('colors.gray.200') 25%, theme('colors.gray.50') 50%, theme('colors.gray.200') 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .dark .skeleton-shimmer {
+    background: linear-gradient(90deg, theme('colors.gray.700') 25%, theme('colors.gray.800') 50%, theme('colors.gray.700') 75%);
+    background-size: 200% 100%;
+  }
+
+  .product-card {
+    @apply bg-gray-50 border border-gray-200 rounded-xl p-6;
+    @apply transition-all duration-200 ease-in-out;
+    @apply hover:shadow-hover hover:-translate-y-1;
+    @apply focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2;
+    @apply dark:bg-gray-800 dark:border-gray-700;
+    @apply dark:hover:shadow-dark-hover;
+  }
+
+  .navbar-fixed {
+    @apply fixed top-0 left-0 right-0 z-50;
+    @apply bg-gray-50 border-b border-gray-200;
+    @apply transition-colors duration-200;
+    @apply dark:bg-gray-800 dark:border-gray-700;
+  }
+
+  .navbar-content {
+    @apply flex items-center justify-between h-16;
+    @apply w-full mx-auto px-4;
+  }
+
+  .navbar-logo {
+    @apply text-2xl font-bold text-blue-600 no-underline;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:rounded;
+    @apply dark:text-blue-400;
+  }
+
+  .navbar-actions {
+    @apply flex items-center gap-6;
+  }
+
+  .icon-btn {
+    @apply bg-transparent border border-gray-200 rounded-lg p-2;
+    @apply cursor-pointer text-xl text-gray-900;
+    @apply transition-all duration-150 ease-in-out;
+    @apply hover:bg-gray-200 hover:scale-105;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    @apply dark:border-gray-700 dark:text-gray-100 dark:hover:bg-gray-700;
+  }
+
+  .cart-badge {
+    @apply icon-btn relative;
+  }
+
+  .cart-count {
+    @apply absolute -top-2 -right-2 bg-red-500 text-white;
+    @apply rounded-full w-5 h-5 flex items-center justify-center;
+    @apply text-xs font-bold;
+  }
+
+  .product-image-container {
+    @apply relative aspect-square mb-6 overflow-hidden rounded-lg bg-gray-200;
+    @apply dark:bg-gray-700;
+  }
+
+  .product-image {
+    @apply w-full h-full object-cover transition-opacity duration-200;
+  }
+
+  .product-image-loading {
+    @apply opacity-0;
+  }
+
+  .product-image-loaded {
+    @apply opacity-100;
+  }
+
+  .product-tag {
+    @apply absolute top-2 right-2 px-2 py-1 rounded text-xs font-bold uppercase;
+  }
+
+  .product-tag-new {
+    @apply bg-green-500 text-white;
+  }
+
+  .product-tag-promo {
+    @apply bg-yellow-500 text-white;
+  }
+
+  .product-title {
+    @apply text-base font-semibold mb-2 leading-snug;
+    @apply line-clamp-2 min-h-[2.8rem];
+  }
+
+  .product-rating {
+    @apply text-yellow-500 mb-2 flex items-center gap-1;
+  }
+
+  .product-rating-text {
+    @apply text-gray-500 text-sm;
+    @apply dark:text-gray-400;
+  }
+
+  .product-price {
+    @apply text-xl font-bold text-blue-600 mb-6;
+    @apply dark:text-blue-400;
+  }
+
+  .main-content {
+    @apply mt-28 py-8;
+  }
+
+  .products-grid {
+    @apply grid gap-6 grid-cols-1;
+    @apply tablet:grid-cols-2;
+    @apply desktop:grid-cols-3;
+    @apply large:grid-cols-4;
+  }
+
+  @supports not (line-clamp: 2) {
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}
