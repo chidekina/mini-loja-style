@@ -27,7 +27,9 @@ const ProductCard = ({ product, onAddToCart, isLoading }) => {
 
   const tagClasses = {
     'Novo': 'product-tag-new',
-    'Promo': 'product-tag-promo'
+    'novo': 'product-tag-new',
+    'Promo': 'product-tag-promo',
+    'promo': 'product-tag-promo'
   };
 
   return (

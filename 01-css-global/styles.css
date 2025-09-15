@@ -250,7 +250,8 @@ body {
   text-transform: uppercase;
 }
 
-.product-tag.new {
+.product-tag.new,
+.product-tag.novo {
   background-color: var(--color-success);
   color: white;
 }

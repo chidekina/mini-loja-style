@@ -1,10 +1,46 @@
-export const products = [
+import axios from 'axios';
+
+const API_BASE_URL = 'https://fakestoreapi.com';
+
+// Transform API product to our format
+const transformProduct = (apiProduct) => ({
+  id: apiProduct.id,
+  title: apiProduct.title,
+  price: apiProduct.price,
+  rating: apiProduct.rating.rate,
+  tag: apiProduct.rating.rate >= 4.5 ? "novo" : (apiProduct.price < 50 ? "Promo" : null),
+  image: apiProduct.image
+});
+
+export const fetchProducts = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/products`);
+    return response.data.map(transformProduct);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    // Fallback to static data if API fails
+    return fallbackProducts;
+  }
+};
+
+export const fetchProduct = async (id) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/products/${id}`);
+    return transformProduct(response.data);
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    return null;
+  }
+};
+
+// Fallback static data in case API fails
+const fallbackProducts = [
   {
     id: 1,
     title: "Smartphone Galaxy Premium com Câmera Avançada",
     price: 1299.99,
     rating: 4.8,
-    tag: "Novo",
+    tag: "novo",
     image: "https://via.placeholder.com/300x300/4F46E5/FFFFFF?text=Phone"
   },
   {
@@ -20,7 +56,7 @@ export const products = [
     title: "Headset Wireless com Cancelamento de Ruído",
     price: 399.99,
     rating: 4.7,
-    tag: "Novo",
+    tag: "novo",
     image: "https://via.placeholder.com/300x300/DC2626/FFFFFF?text=Headset"
   },
   {
@@ -44,7 +80,7 @@ export const products = [
     title: "Camera DSLR Profissional 4K Ultra",
     price: 1899.99,
     rating: 4.9,
-    tag: "Novo",
+    tag: "novo",
     image: "https://via.placeholder.com/300x300/0891B2/FFFFFF?text=Camera"
   }
 ];

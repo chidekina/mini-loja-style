@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './GlobalStyles';
 import { lightTheme, darkTheme } from './theme';
 import Navbar from './components/Navbar';
 import ProductCard from './components/ProductCard';
 import Skeleton from './components/Skeleton';
-import { products } from '../shared/data';
-import { useCart, useLoading, useThemeToggle } from '../shared/hooks';
+import { fetchProducts } from '../shared/data';
+import { useCart, useThemeToggle } from '../shared/hooks';
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -42,9 +42,21 @@ const ProductsGrid = styled.div`
 `;
 
 const App = () => {
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { cartItems, addToCart } = useCart();
-  const { isLoading } = useLoading(1500);
   const { theme, toggleTheme } = useThemeToggle();
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      setIsLoading(true);
+      const fetchedProducts = await fetchProducts();
+      setProducts(fetchedProducts);
+      setIsLoading(false);
+    };
+
+    loadProducts();
+  }, []);
 
   const currentTheme = theme === 'dark' ? darkTheme : lightTheme;
 

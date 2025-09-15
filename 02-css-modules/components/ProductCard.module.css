@@ -52,7 +52,8 @@
   text-transform: uppercase;
 }
 
-.productTag.new {
+.productTag.new,
+.novo {
   background-color: var(--color-success);
   color: white;
 }
